@@ -1,0 +1,82 @@
+# TODO
+# Chat Clearing Command
+# Chat Muting Command
+# Chat Cooldown
+# Broadcast Command
+# Anti-Raid
+
+# Chat Formatting Configuration
+#
+# Section Permissions:
+# 'pcm.chatformatting.colors' - Use colors in chat (&a)
+# 'pcm.chatformatting.hex' - Use hex colors in chat (&#00FF00)
+# 'pcm.chatformatting.magic' - Use magic formats in chat (&k)
+chat-formatting:
+  enabled: true
+
+  # Available Placeholder List
+  # {message} - The message
+  # {username} - Player's name
+  # {displayname} - Player's display name
+  # {prefix} - The player's vault/luckperms prefix (or nothing if none installed)
+  # {suffix} - the player's vault/luckperms suffix (or nothing if none installed)
+  chat-format: "{prefix} &7{username}: &f{message}"
+
+  # Per-Group chat format (Requires Vault or LuckPerms)
+  group-formats:
+  #  default: "&8[Default] &7{username}: &f{message}"
+  #  owner: "&4[Owner] &7{username}: &f{message}"
+
+
+# Chat Filter Configuration
+#
+# Section permissions:
+# 'pcm.chatfilter.bypass' - Bypass the chat filter
+# 'pcm.chatfilter.notify' - Receive notifications when someone uses a filtered word
+chat-filter:
+  enabled: true
+
+  # Lists of letters that can be substituted for each other
+  # For example 'e' can be substitutted with '3' like in: h3llo
+  alike-pairs:
+    - ["i", "l", "|", ";", ":", "\\", "/"]
+    - ["@", "a", "4"]
+    - ["0", "o"]
+    - ["7", "t"]
+    - ["5", "s"]
+    - ["3", "e"]
+    - ["q", "g"]
+    - [" ", ".", ","]
+
+  # List of words that should be filtered
+  filtered-words:
+    - "nigger"
+    - "fuck"
+    - "shit"
+    - "kys"
+    - "kill yourself"
+    - "retard"
+
+  # The removal strategy for filtered words
+  # 'cancel_message' - Completely prevents messages with filtered words from being sent
+  # 'replace_filtered' - Replaces filtered words with the 'replacement-character'
+  # NOTE: If an invalid removal strategy is provided 'cancel_message' will be used
+  removal-strategy: cancel_message
+
+  # Explained in the dscription for 'removal-strategy'
+  replacement-character: "*"
+
+  # Should staff be notified when a player uses a filtered word
+  notify-staff: true
+
+  # {player} - The player who sent the message
+  # {message} - The unfiltered message
+  notify-staff-format: "&4[FILTER] &c{player} &7» &c{message}"
+
+  # Commands that should be sent when a player uses a filtered word
+  punish-commands:
+  # - "/mute {player} 1h Using bad words"
+
+# <!> DO NOT TOUCH <!>
+# Used for automatically adding new config values in newer versions of the plugin
+config-version: ${version}

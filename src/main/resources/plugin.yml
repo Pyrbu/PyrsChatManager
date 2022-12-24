@@ -1,0 +1,6 @@
+name: PyrsChatManager
+version: ${version}
+authors: [Pyr#6969]
+softdepend: [Vault, LuckPerms, PlaceholderAPI]
+main: lol.pyr.chatmanager.ChatPlugin
+api-version: 1.13
