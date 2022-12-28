@@ -1,7 +1,7 @@
 package lol.pyr.chatmanager;
 
 import lol.pyr.chatmanager.filter.AlikePair;
-import lol.pyr.chatmanager.filter.ChatFilter;
+import lol.pyr.chatmanager.filter.Filter;
 import lol.pyr.chatmanager.util.ColorUtils;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +24,7 @@ public class ChatConfig {
     private final Map<String, String> chatFormattingGroupFormats = new HashMap<>();
 
     private boolean chatFilterEnabled;
-    private ChatFilter.RemovalStrategy chatFilterRemovalStrategy;
+    private Filter.RemovalStrategy chatFilterRemovalStrategy;
     private final Set<AlikePair> chatFilterAlikePairs = new HashSet<>();
     private final Set<String> chatFilterFilteredWords = new HashSet<>();
     private Character chatFilterReplacementCharacter;
@@ -32,7 +32,7 @@ public class ChatConfig {
     private String chatFilterNotifyStaffFormat;
     private final List<String> chatFilterPunishCommands = new ArrayList<>();
 
-    @SuppressWarnings({"ConstantConditions", "unchecked"})
+    @SuppressWarnings("ConstantConditions")
     public void load(File file) {
         YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
 
@@ -45,10 +45,10 @@ public class ChatConfig {
 
         chatFilterEnabled = config.getBoolean("chat-filter.enabled");
         chatFilterAlikePairs.clear();
-        if (config.contains("chat-filter.alike-pairs")) for (List<String> l : ((List<List<String>>) config.getList("chat-filter.alike-pairs"))) chatFilterAlikePairs.add(new AlikePair(l));
+        if (config.contains("chat-filter.alike-pairs")) for (String l :  config.getStringList("chat-filter.alike-pairs")) chatFilterAlikePairs.add(new AlikePair(l.toCharArray()));
         chatFilterFilteredWords.clear();
         if (config.contains("chat-filter.filtered-words")) chatFilterFilteredWords.addAll(config.getStringList("chat-filter.filtered-words"));
-        chatFilterRemovalStrategy = ChatFilter.RemovalStrategy.fromString(config.getString("chat-filter.removal-strategy"));
+        chatFilterRemovalStrategy = Filter.RemovalStrategy.fromString(config.getString("chat-filter.removal-strategy"));
         chatFilterReplacementCharacter = config.getString("chat-filter.replacement-character").charAt(0);
         chatFilterNotifyStaff = config.getBoolean("chat-filter.notify-staff");
         chatFilterNotifyStaffFormat = ColorUtils.translateAll(config.getString("chat-filter.notify-staff-format"));

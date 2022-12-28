@@ -1,4 +1,4 @@
-package lol.pyr.chatmanager.groups;
+package lol.pyr.chatmanager.meta;
 
 import net.milkbowl.vault.chat.Chat;
 import net.milkbowl.vault.permission.Permission;

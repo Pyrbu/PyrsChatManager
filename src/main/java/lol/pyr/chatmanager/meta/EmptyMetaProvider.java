@@ -1,4 +1,4 @@
-package lol.pyr.chatmanager.groups;
+package lol.pyr.chatmanager.meta;
 
 import org.bukkit.OfflinePlayer;
 

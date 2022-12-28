@@ -1,4 +1,4 @@
-package lol.pyr.chatmanager.groups;
+package lol.pyr.chatmanager.meta;
 
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.LuckPermsProvider;
@@ -25,14 +25,16 @@ public class LuckPermsMetaProvider implements MetaProvider {
     public String getPrefix(OfflinePlayer player) {
         User user = luckPerms.getUserManager().getUser(player.getUniqueId());
         if (user == null) return "";
-        return user.getCachedData().getMetaData().getPrefix();
+        String prefix = user.getCachedData().getMetaData().getPrefix();
+        return prefix == null ? "" : prefix;
     }
 
     @Override
     public String getSuffix(OfflinePlayer player) {
         User user = luckPerms.getUserManager().getUser(player.getUniqueId());
         if (user == null) return "";
-        return user.getCachedData().getMetaData().getSuffix();
+        String suffix = user.getCachedData().getMetaData().getSuffix();
+        return suffix == null ? "" : suffix;
     }
 
     public static boolean isSupported() {

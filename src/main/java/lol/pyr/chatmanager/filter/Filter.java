@@ -4,7 +4,7 @@ import lol.pyr.chatmanager.ChatPlugin;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class ChatFilter {
+public class Filter {
     private final ChatPlugin plugin;
 
     private boolean containsAlike(String message, String word) {

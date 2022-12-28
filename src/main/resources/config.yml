@@ -3,6 +3,7 @@
 # Chat Muting Command
 # Chat Cooldown
 # Broadcast Command
+# Automatic Messages with sound support
 # Anti-Raid
 
 # Chat Formatting Configuration
@@ -14,13 +15,13 @@
 chat-formatting:
   enabled: true
 
-  # Available Placeholder List
+  # Available Placeholder List (PlaceholderAPI Supported)
   # {message} - The message
   # {username} - Player's name
   # {displayname} - Player's display name
   # {prefix} - The player's vault/luckperms prefix (or nothing if none installed)
   # {suffix} - the player's vault/luckperms suffix (or nothing if none installed)
-  chat-format: "{prefix} &7{username}: &f{message}"
+  chat-format: "{prefix}&7{username}: &f{message}"
 
   # Per-Group chat format (Requires Vault or LuckPerms)
   group-formats:
@@ -39,14 +40,14 @@ chat-filter:
   # Lists of letters that can be substituted for each other
   # For example 'e' can be substitutted with '3' like in: h3llo
   alike-pairs:
-    - ["i", "l", "|", ";", ":", "\\", "/"]
-    - ["@", "a", "4"]
-    - ["0", "o"]
-    - ["7", "t"]
-    - ["5", "s"]
-    - ["3", "e"]
-    - ["q", "g"]
-    - [" ", ".", ","]
+    - "il|;:\\\\/1"
+    - "@a4"
+    - " .,"
+    - "0o"
+    - "7t"
+    - "5s"
+    - "3e"
+    - "qg"
 
   # List of words that should be filtered
   filtered-words:
@@ -64,18 +65,43 @@ chat-filter:
   removal-strategy: cancel_message
 
   # Explained in the dscription for 'removal-strategy'
+  # If more than one character is provided only the first will be used
   replacement-character: "*"
-
-  # Should staff be notified when a player uses a filtered word
-  notify-staff: true
-
-  # {player} - The player who sent the message
-  # {message} - The unfiltered message
-  notify-staff-format: "&4[FILTER] &c{player} &7» &c{message}"
 
   # Commands that should be sent when a player uses a filtered word
   punish-commands:
   # - "/mute {player} 1h Using bad words"
+
+  # Should staff be notified when a player uses a filtered word
+  notify-staff: true
+
+  # The format for staff notifications
+  # PlaceholderAPI is supported from the point of view of the offending player
+  # {player} - The player who sent the message
+  # {message} - The unfiltered message
+  notify-staff-format: "&4[FILTER] &c{player} &7-> &c{message}"
+
+
+# Section permissions:
+# 'pcm.commands.chatclear' - Bypass the chat filter
+# 'pcm.commands.broadcast' - Receive notifications when someone uses a filtered word
+commands:
+  # {player} - The player who cleared the chat
+  chat-clear-messages:
+    - ""
+    - "&7The chat has been cleared by &c{player}"
+    - ""
+
+  # {player} - The player who muted the chat
+  # {state} - Either 'muted' or 'unmuted' depending on what happened
+  mute-chat-messages:
+    - ""
+    - "&7The chat has been {state} by &c{player}"
+    - ""
+
+  # {message} - The message that has been broadcast
+  broadcast-messages:
+    - "&c&lBROADCAST &7| &f{message}"
 
 # <!> DO NOT TOUCH <!>
 # Used for automatically adding new config values in newer versions of the plugin

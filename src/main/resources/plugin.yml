@@ -4,3 +4,10 @@ authors: [Pyr#6969]
 softdepend: [Vault, LuckPerms, PlaceholderAPI]
 main: lol.pyr.chatmanager.ChatPlugin
 api-version: 1.13
+
+commands:
+  chatclear:
+    aliases: [clearchat]
+    permission: pcm.commands.clearchat
+  pcmreload:
+    permission: pcm.commands.pcmreload

@@ -45,7 +45,7 @@ shadowJar {
 }
 
 processResources {
-    expand("version": version)
+    expand "version": version
 }
 
 tasks.compileJava.dependsOn clean

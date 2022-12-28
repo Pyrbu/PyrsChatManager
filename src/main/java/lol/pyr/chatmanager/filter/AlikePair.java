@@ -9,8 +9,8 @@ public class AlikePair {
         this.chars.addAll(Arrays.asList(chars));
     }
 
-    public AlikePair(Collection<String> collection) {
-        for (String s : collection) if (s.length() == 1) chars.add(s.charAt(0));
+    public AlikePair(char[] chars) {
+        for (char c : chars) this.chars.add(c);
     }
 
     public Set<Character> getChars() {
