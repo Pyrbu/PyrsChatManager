@@ -6,8 +6,6 @@
 # Automatic Messages with sound support
 # Anti-Raid
 
-# Chat Formatting Configuration
-#
 # Section Permissions:
 # 'pcm.chatformatting.colors' - Use colors in chat (&a)
 # 'pcm.chatformatting.hex' - Use hex colors in chat (&#00FF00)
@@ -29,8 +27,6 @@ chat-formatting:
   #  owner: "&4[Owner] &7{username}: &f{message}"
 
 
-# Chat Filter Configuration
-#
 # Section permissions:
 # 'pcm.chatfilter.bypass' - Bypass the chat filter
 # 'pcm.chatfilter.notify' - Receive notifications when someone uses a filtered word
@@ -82,9 +78,49 @@ chat-filter:
   notify-staff-format: "&4[FILTER] &c{player} &7-> &c{message}"
 
 
+# Section Permissions
+# 'pcm.commands.toggleabc' - Command that toggles automatic broadcasts per-player
+# 'pcm.commands.nextabc' - Command that forces the next automatic broadcast to occur (for debugging purposes)
+automatic-broadcast:
+  enabled: false
+
+  # How often automatic messages will be sent to players (in seconds)
+  message-frequency: 60
+
+  # How the messages that will be sent to each player should be picked
+  # 'random' - A random message will be picked and sent to all players
+  # 'random_per_player' - A different random message will be picked for each player
+  # 'sequence' - Each message will be sent one after another in a loop
+  mode: sequence
+
+  messages:
+    # A unique message identifier (doesn't really matter it's here so the config can look nicer)
+    discord:
+      # What sound to play when this message is sent, set to 'none' to disable
+      # List of all sounds: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Sound.html
+      sound: block_note_block_pling
+
+      # The volume and pitch that should be used when playing the sound
+      # Ignored if 'sound' is 'none'
+      sound-volume: 1
+      sound-pitch: 1
+
+      # The lines of the message that should actually be sent
+      messages:
+        - "&5Did you know we have a server discord?"
+        - "&dYou can join it at https://discord.gg/example"
+
+    store:
+      sound: block_note_block_pling
+      sound-volume: 1
+      sound-pitch: 1
+      messages:
+        - "&5Want a slight advantage against others?"
+        - "&dCheck out our store at https://store.example.net"
+
 # Section permissions:
-# 'pcm.commands.chatclear' - Bypass the chat filter
-# 'pcm.commands.broadcast' - Receive notifications when someone uses a filtered word
+# 'pcm.commands.chatclear' - Command used to clear the chat
+# 'pcm.commands.broadcast' - Command that broadcasts a message to all online players
 commands:
   # {player} - The player who cleared the chat
   chat-clear-messages:
@@ -102,6 +138,7 @@ commands:
   # {message} - The message that has been broadcast
   broadcast-messages:
     - "&c&lBROADCAST &7| &f{message}"
+
 
 # <!> DO NOT TOUCH <!>
 # Used for automatically adding new config values in newer versions of the plugin

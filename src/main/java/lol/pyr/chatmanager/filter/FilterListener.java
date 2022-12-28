@@ -15,7 +15,7 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 public class FilterListener implements Listener {
     private final ChatPlugin plugin;
 
-    @EventHandler(priority = EventPriority.LOW)
+    @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
     public void onChat(AsyncPlayerChatEvent event) {
         ChatConfig config = plugin.getChatConfig();
         if (!config.isChatFilterEnabled()) return;

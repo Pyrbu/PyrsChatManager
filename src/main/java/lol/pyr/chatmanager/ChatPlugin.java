@@ -1,5 +1,6 @@
 package lol.pyr.chatmanager;
 
+import lol.pyr.chatmanager.commands.BroadcastCommand;
 import lol.pyr.chatmanager.commands.ChatClearCommand;
 import lol.pyr.chatmanager.commands.ReloadConfigCommand;
 import lol.pyr.chatmanager.filter.Filter;
@@ -12,6 +13,7 @@ import lol.pyr.chatmanager.meta.VaultMetaProvider;
 import lol.pyr.extendedcommands.CommandManager;
 import lol.pyr.extendedcommands.MessageKey;
 import lombok.Getter;
+import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.PluginManager;
@@ -47,6 +49,9 @@ public class ChatPlugin extends JavaPlugin {
         setupMetaProvider();
         registerListeners();
         registerCommands();
+
+        // bStats (shock emoji)
+        new Metrics(this, 17214);
     }
 
     private void registerListeners() {
@@ -63,7 +68,8 @@ public class ChatPlugin extends JavaPlugin {
         manager.setDefaultResolver(ctx -> ctx.getCurrentUsage().length() == 0 ? ChatColor.RED + "Incorrect usage" :  ChatColor.RED + "Incorrect usage: /" + ctx.getCurrentUsage());
 
         manager.registerCommand("pcmreload", new ReloadConfigCommand());
-        manager.registerCommand("chatclear", new ChatClearCommand());
+        manager.registerCommand("clearchat", new ChatClearCommand());
+        manager.registerCommand("broadcast", new BroadcastCommand());
     }
 
     public void setupMetaProvider() {

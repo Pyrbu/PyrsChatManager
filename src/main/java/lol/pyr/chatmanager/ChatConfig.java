@@ -32,6 +32,10 @@ public class ChatConfig {
     private String chatFilterNotifyStaffFormat;
     private final List<String> chatFilterPunishCommands = new ArrayList<>();
 
+    private String broadcastMessage;
+    private String chatClearMessage;
+    private String muteChatMessage;
+
     @SuppressWarnings("ConstantConditions")
     public void load(File file) {
         YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
@@ -54,6 +58,10 @@ public class ChatConfig {
         chatFilterNotifyStaffFormat = ColorUtils.translateAll(config.getString("chat-filter.notify-staff-format"));
         chatFilterPunishCommands.clear();
         if (config.contains("chat-filter.punish-commands")) chatFilterPunishCommands.addAll(config.getStringList("chat-filter.punish-commands"));
+
+        broadcastMessage = ColorUtils.translateAll(String.join("\n", config.getStringList("commands.broadcast-messages")));
+        chatClearMessage = ColorUtils.translateAll(String.join("\n", config.getStringList("commands.chat-clear-messages")));
+        muteChatMessage = ColorUtils.translateAll(String.join("\n", config.getStringList("commands.mute-chat-messages")));
 
         plugin.getLogger().info("Loaded configuration");
     }

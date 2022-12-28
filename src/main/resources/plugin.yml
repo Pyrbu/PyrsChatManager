@@ -6,8 +6,14 @@ main: lol.pyr.chatmanager.ChatPlugin
 api-version: 1.13
 
 commands:
-  chatclear:
-    aliases: [clearchat]
+  clearchat:
+    aliases: [chatclear]
     permission: pcm.commands.clearchat
+  mutechat:
+    aliases: [chatmute]
+    permission: pcm.commands.mutechat
   pcmreload:
     permission: pcm.commands.pcmreload
+  broadcast:
+    aliases: [bc]
+    permission: pcm.commands.broadcast
